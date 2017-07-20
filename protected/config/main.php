@@ -1,6 +1,6 @@
 <?php
 return array(
-	'name'=>'Kartero',
+	'name'=>'k2p',
 	
 	'defaultController'=>'front',
 		
@@ -45,7 +45,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=kartero',
 			'emulatePrepare'   => true,
 			'username'         => 'root',
-			'password'         => '',
+			'password'         => '1q2w3e4r5t',
 			'charset'          => 'utf8',
 			'tablePrefix'      => 'kt_',
 	    ),
