@@ -42,7 +42,7 @@ return array(
 				
 		'db'=>array(	        
 		    'class'            => 'CDbConnection' ,
-			'connectionString' => 'mysql:host=deathstar;port=3306;dbname=kartero',
+			'connectionString' => 'mysql:host=localhost;dbname=kartero',
 			'emulatePrepare'   => true,
 			'username'         => 'root',
 			'password'         => '1q2w3e4r5t',
