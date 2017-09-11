@@ -61,7 +61,7 @@ $menu =  array(
         array('visible'=>true,'label'=>'<i class="ion-ios-list"></i>&nbsp; '.t("Reports"),
         'url'=>array('/app/reports'),'linkOptions'=>array()),
         array('visible'=>true,'label'=>'<i class="ion-ios-list"></i>&nbsp; '.t("Chart"),
-            'url'=>"http://google.com",'linkOptions'=>array()),
+            'url'=>"http://128.199.158.105/k2p/chart/index.html",'linkOptions'=>array()),
     )
 );       
 ?>
