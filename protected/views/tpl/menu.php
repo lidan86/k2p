@@ -59,9 +59,10 @@ $menu =  array(
         'url'=>array('/app/emaillogs'),'linkOptions'=>array()),              
                        
         array('visible'=>true,'label'=>'<i class="ion-ios-list"></i>&nbsp; '.t("Reports"),
-        'url'=>array('/app/reports'),'linkOptions'=>array()),       
-        
-     )   
+        'url'=>array('/app/reports'),'linkOptions'=>array()),
+        array('visible'=>true,'label'=>'<i class="ion-ios-list"></i>&nbsp; '.t("Chart"),
+            'url'=>"http://google.com",'linkOptions'=>array()),
+    )
 );       
 ?>
 

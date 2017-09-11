@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Layouts &raquo; Two-and-One</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+  <!-- Demo Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.3.2/holder.min.js" type="text/javascript"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <!-- keen-analysis@1.2.2 -->
+  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-analysis-1.2.2.js" type="text/javascript"></script>
+
+  <!-- keen-dataviz@1.1.3 -->
+  <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.1.3.css" rel="stylesheet" />
+  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.1.3.js" type="text/javascript"></script>  
+
+  <!-- Dashboard -->
+  <link rel="stylesheet" type="text/css" href="assets/css/keen-dashboards.css" />
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/highcharts-more.js"></script>
+  <script src="http://code.highcharts.com/maps/modules/map.js"></script>
+  <script src="http://code.highcharts.com/maps/modules/data.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
+
+
+
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</head>
+<body class="keen-dashboard" style="padding-top: 80px;">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://128.199.158.105/k2p/app">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="http://128.199.158.105/k2p/chart/index.html">Chart 1</a></li>
+            </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Pageviews by browser (past 24 hours)
+          </div>
+          <div class="chart-stage">
+            <div id="container1"></div>
+          </div>
+          <div class="chart-notes">
+            This is a sample text region to describe this chart.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Pageviews by browser (past 5 days)
+          </div>
+          <div class="chart-stage">
+            <div id="container2"></div>
+          </div>
+          <div class="chart-notes">
+            Notes go down here
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Impressions by advertiser
+          </div>
+          <div class="chart-stage">
+
+            <div id="container"></div>
+          </div>
+          <div class="chart-notes">
+            Notes go down here
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="container-fluid">
+    <p class="small text-muted">Built with &#9829; by <a href="https://mplus.software">Maulidan Yulianto</a></p>
+  </div>
+<script type="text/javascript">
+    // See API docs for 'joinBy' for more info on linking data and map.
+    var data = [
+        ['id-3700', 0],
+        ['id-ac', 1],
+        ['id-ki', 2],
+        ['id-jt', 3],
+        ['id-be', 4],
+        ['id-bt', 5],
+        ['id-kb', 6],
+        ['id-bb', 7],
+        ['id-ba', 8],
+        ['id-ji', 9],
+        ['id-ks', 10],
+        ['id-nt', 11],
+        ['id-se', 12],
+        ['id-kr', 13],
+        ['id-ib', 14],
+        ['id-su', 15],
+        ['id-ri', 16],
+        ['id-sw', 17],
+        ['id-la', 18],
+        ['id-sb', 19],
+        ['id-ma', 20],
+        ['id-nb', 21],
+        ['id-sg', 22],
+        ['id-st', 23],
+        ['id-pa', 24],
+        ['id-jr', 25],
+        ['id-1024', 26],
+        ['id-jk', 27],
+        ['id-go', 28],
+        ['id-yo', 29],
+        ['id-kt', 30],
+        ['id-sl', 31],
+        ['id-sr', 32],
+        ['id-ja', 33]
+    ];
+
+    // Create the chart
+    Highcharts.mapChart('container1', {
+        chart: {
+            map: 'countries/id/id-all'
+        },
+
+        title: {
+            text: 'Highmaps basic demo'
+        },
+
+        subtitle: {
+            text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/id/id-all.js">Indonesia</a>'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        colorAxis: {
+            min: 0
+        },
+
+        series: [{
+            data: data,
+            name: 'Random data',
+            states: {
+                hover: {
+                    color: '#BADA55'
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }]
+    });
+    Highcharts.chart('container2', {
+
+        title: {
+            text: 'Fishing by Indonesia Wilayah Barat, 2010-2016'
+        },
+
+
+
+        yAxis: {
+            title: {
+                text: 'Number of Employees'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                pointStart: 2010
+            }
+        },
+
+        series: [{
+            name: 'Tuna',
+            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        }, {
+            name: 'Tenggiri',
+            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+        }, {
+            name: 'Tongkol',
+            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+        }, {
+            name: 'Udang',
+            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+        }, {
+            name: 'Other',
+            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+        }]
+
+    });
+    /**
+     * This is a complex demo of how to set up a Highcharts chart, coupled to a
+     * dynamic source and extended by drawing image sprites, wind arrow paths
+     * and a second grid on top of the chart. The purpose of the demo is to inpire
+     * developers to go beyond the basic chart types and show how the library can
+     * be extended programmatically. This is what the demo does:
+     *
+     * - Loads weather forecast from www.yr.no in form of an XML service. The XML
+     *   is translated on the Higcharts website into JSONP for the sake of the demo
+     *   being shown on both our website and JSFiddle.
+     * - When the data arrives async, a Meteogram instance is created. We have
+     *   created the Meteogram prototype to provide an organized structure of the different
+     *   methods and subroutines associated with the demo.
+     * - The parseYrData method parses the data from www.yr.no into several parallel arrays. These
+     *   arrays are used directly as the data option for temperature, precipitation
+     *   and air pressure. As the temperature data gives only full degrees, we apply
+     *   some smoothing on the graph, but keep the original data in the tooltip.
+     * - After this, the options structure is build, and the chart generated with the
+     *   parsed data.
+     * - In the callback (on chart load), we weather icons on top of the temperature series.
+     *   The icons are sprites from a single PNG image, placed inside a clipped 30x30
+     *   SVG <g> element. VML interprets this as HTML images inside a clipped div.
+     * - Lastly, the wind arrows are built and added below the plot area, and a grid is
+     *   drawn around them. The wind arrows are basically drawn north-south, then rotated
+     *   as per the wind direction.
+     */
+
+
+    Highcharts.chart('container', {
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Average Monthly Temperature and Rainfall in Indonesia'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: [{
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: '{value}°C',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: 'Temperature',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }, { // Secondary yAxis
+            title: {
+                text: 'Rainfall',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            labels: {
+                format: '{value} mm',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 100,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        series: [{
+            name: 'Rainfall',
+            type: 'column',
+            yAxis: 1,
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+            tooltip: {
+                valueSuffix: ' mm'
+            }
+
+        }, {
+            name: 'Temperature',
+            type: 'spline',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+            tooltip: {
+                valueSuffix: '°C'
+            }
+        }]
+    });
+</script>
+</body>
+</html>
