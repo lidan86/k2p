@@ -2596,3 +2596,4 @@ function trackBackMarker(data)
 		track_interval_counter++;
 	}, 1000);	
 }
+
