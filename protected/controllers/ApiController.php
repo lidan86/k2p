@@ -679,6 +679,7 @@ class ApiController extends CController
 	        
 	        $task_id=$this->data['task_id'];	  
 	        $driver_name=$token['first_name'] ." " .$token['last_name'];         
+
 	        $db=new DbExt;		        
 	        
 	        $task_id=$this->data['task_id'];
@@ -1187,7 +1188,7 @@ class ApiController extends CController
     	$this->output();
     }
     
-    public function actionloadNotes()
+    public function actionLoadNotes()
     {
     	if ( !$token=Driver::getDriverByToken($this->data['token'])) {
     		$this->msg=self::t("Token not valid");
@@ -1215,25 +1216,8 @@ class ApiController extends CController
     	
     	$this->output();
     }
-    //ADD SURVEY FUCTION
-    public function actionloadSurvey()
-    {
-        if ( !$token=Driver::getDriverByToken($this->data['token'])) {
-            $this->msg=self::t("Token not valid");
-            $this->output();
-            Yii::app()->end();
-        } 
-        
-        $driver_id=$token['driver_id'];  
-        Driver::setCustomerTimezone( $token['customer_id'] );   
-                
-        $this->msg=self::t("Task not found");
-        
-        $this->output();
-    }
-    //END ADD SURVEY FUNCTION
     
-    public function actionAddSurvey()
+    public function actionAddNotes()
     {
     	if ( !$token=Driver::getDriverByToken($this->data['token'])) {
     		$this->msg=self::t("Token not valid");
@@ -1247,110 +1231,12 @@ class ApiController extends CController
     	Driver::setCustomerTimezone( $token['customer_id'] );	
     	
     	if ( $res=Driver::getTaskId($this->data['task_id']) ){    		
-	    	if ( 
-                        isset($this->data['survey1']) && 
-                        isset($this->data['survey2']) &&
-                        isset($this->data['survey3']) &&
-                        isset($this->data['survey4']) &&
-                        isset($this->data['survey5']) &&
-                        isset($this->data['survey6']) &&
-                        isset($this->data['survey7']) &&
-                        isset($this->data['survey8']) &&
-                        isset($this->data['survey9']) &&
-                        isset($this->data['survey10']) &&
-                        isset($this->data['survey11']) &&
-                        isset($this->data['survey12']) &&
-                        isset($this->data['survey13']) &&
-                        isset($this->data['survey14']) &&
-                        isset($this->data['survey15']) &&
-                        isset($this->data['survey16']) &&
-                        isset($this->data['survey17']) &&
-                        isset($this->data['survey18']) &&
-                        isset($this->data['survey19']) &&
-                        isset($this->data['survey20']) &&
-                        isset($this->data['survey21']) &&
-                        isset($this->data['survey22']) &&
-                        isset($this->data['survey23']) &&
-                        isset($this->data['survey24']) &&
-                        isset($this->data['survey25']) &&
-                        isset($this->data['survey26']) &&
-                        isset($this->data['survey27']) &&
-                        isset($this->data['survey28']) &&
-                        isset($this->data['survey29']) &&
-                        isset($this->data['survey30']) &&
-                        isset($this->data['survey31']) &&
-                        isset($this->data['survey32'])){
-	    	 	if(!empty($this->data['survey1']) &&  
-                        !empty($this->data['survey2']) &&
-                        !empty($this->data['survey3']) &&
-                        !empty($this->data['survey4']) &&
-                        !empty($this->data['survey5']) &&
-                        !empty($this->data['survey6']) &&
-                        !empty($this->data['survey7']) &&
-                        !empty($this->data['survey8']) &&
-                        !empty($this->data['survey9']) &&
-                        !empty($this->data['survey10']) &&
-                        !empty($this->data['survey11']) &&
-                        !empty($this->data['survey12']) &&
-                        !empty($this->data['survey13']) &&
-                        !empty($this->data['survey14']) &&
-                        !empty($this->data['survey15']) &&
-                        !empty($this->data['survey16']) &&
-                        !empty($this->data['survey17']) &&
-                        !empty($this->data['survey18']) &&
-                        !empty($this->data['survey19']) &&
-                        !empty($this->data['survey20']) &&
-                        !empty($this->data['survey21']) &&
-                        !empty($this->data['survey22']) &&
-                        !empty($this->data['survey23']) &&
-                        !empty($this->data['survey24']) &&
-                        !empty($this->data['survey25']) &&
-                        !empty($this->data['survey26']) &&
-                        !empty($this->data['survey27']) &&
-                        !empty($this->data['survey28']) &&
-                        !empty($this->data['survey29']) &&
-                        !empty($this->data['survey30']) &&
-                        !empty($this->data['survey31']) &&
-                        !empty($this->data['survey32'] )){
+	    	if (isset($this->data['notes'])){
+	    	 	if(!empty($this->data['notes'])){
 	    	 		$db=new DbExt;
-                    $values = array(
-                        'json_survey1' => $this->data['survey1'], 
-                        'json_survey2' => $this->data['survey2'], 
-                        'json_survey3' => $this->data['survey3'], 
-                        'json_survey4' => $this->data['survey4'], 
-                        'json_survey5' => $this->data['survey5'], 
-                        'json_survey6' => $this->data['survey6'], 
-                        'json_survey7' => $this->data['survey7'], 
-                        'json_survey8' => $this->data['survey8'], 
-                        'json_survey9' => $this->data['survey9'], 
-                        'json_survey10' => $this->data['survey10'], 
-                        'json_survey11' => $this->data['survey11'], 
-                        'json_survey12' => $this->data['survey12'], 
-                        'json_survey13' => $this->data['survey13'], 
-                        'json_survey14' => $this->data['survey14'], 
-                        'json_survey15' => $this->data['survey15'], 
-                        'json_survey16' => $this->data['survey16'], 
-                        'json_survey17' => $this->data['survey17'], 
-                        'json_survey18' => $this->data['survey18'], 
-                        'json_survey19' => $this->data['survey19'], 
-                        'json_survey20' => $this->data['survey20'], 
-                        'json_survey21' => $this->data['survey21'], 
-                        'json_survey22' => $this->data['survey22'], 
-                        'json_survey23' => $this->data['survey23'], 
-                        'json_survey24' => $this->data['survey24'], 
-                        'json_survey25' => $this->data['survey25'], 
-                        'json_survey26' => $this->data['survey26'], 
-                        'json_survey27' => $this->data['survey27'], 
-                        'json_survey28' => $this->data['survey28'], 
-                        'json_survey29' => $this->data['survey29'], 
-                        'json_survey30' => $this->data['survey30'], 
-                        'json_survey31' => $this->data['survey31'], 
-                        'json_survey32' => $this->data['survey32'] 
-                        );
-                    $json_obj = json_encode($values);
 	    	 		$params=array(
-	    	 		   'status'=>"survey",
-	    	 		   'remarks'=>Driver::driverStatusPretty( $driver_name ,'survey'),
+	    	 		   'status'=>"notes",
+	    	 		   'remarks'=>Driver::driverStatusPretty( $driver_name ,'notes'),
 	    	 		   'task_id'=>$this->data['task_id'],
 	    	 		   'driver_id'=>$driver_id,
 	    	 		   'driver_location_lat'=>isset($token['location_lat'])?$token['location_lat']:'',
@@ -1358,27 +1244,27 @@ class ApiController extends CController
 		               'date_created'=>AdminFunctions::dateNow(),
 		               'ip_address'=>$_SERVER['REMOTE_ADDR'],
 		               'reason'=>"",
-		               'notes'=>$json_obj
+		               'notes'=>$this->data['notes']
 	    	 		);
 	    	 		if ( $db->insertData("{{task_history}}",$params)){
-	    	 			$this->code=1; $this->msg="Success Add Survey";
+	    	 			$this->code=1; $this->msg="OK";
 	    	 			$this->details=array(
 	    	 			  'task_id'=>$this->data['task_id'],
 	    	 			  'driver_id'=>$driver_id
 	    	 			);
 	    	 			
 	    	 			$task_info=$res;
-	    	 		    $task_info['notes']=$json_obj;
+	    	 			$task_info['notes']=$this->data['notes'];
 	    	 			
 	    	 			if ( $task_info['trans_type']=="delivery"){ 
-	    	 				Driver::sendCustomerNotification('DELIVERY_SURVEY',$task_info);
-	    	 			} else Driver::sendCustomerNotification('PICKUP_SURVEY',$task_info);
+	    	 				Driver::sendCustomerNotification('DELIVERY_NOTES',$task_info);
+	    	 			} else Driver::sendCustomerNotification('PICKUP_NOTES',$task_info);
 	    	 			
-	    	 		} else $this->msg=self::t("cannot saved survey");
+	    	 		} else $this->msg=self::t("cannot saved notes");
 	    	 		
 	    	 		unset($db);
-	    	 	} else $this->msg=self::t("Survey is required");
-	    	} else $this->msg=self::t("Survey is required");
+	    	 	} else $this->msg=self::t("Notes is required");
+	    	} else $this->msg=self::t("Notes is required");
     	} else $this->msg=self::t("Task not found");
     	$this->output();
     }
@@ -1579,6 +1465,7 @@ class ApiController extends CController
     	} else $this->msg=self::t("Task not found");
     	$this->output();
     }
+
     public function actionUploadProfile()
     {
     	$this->data=$_REQUEST;
